@@ -39,7 +39,7 @@ function movieHTML(movie) {
   <div class="movie-card">
   ${
     movie.Poster !== "N/A"
-      ? `<img class="movie-card__img" src="${movie.Poster}" alt="${movie.Title}" />`
+      ? `<img class="movie-card__img" src="${movie.Poster}" alt="${movie.Title}" onerror="showPlaceholder(this)" />`
       : `<div class="movie-card__poster-placeholder">Movie Poster<br />Not Available</div>`
   }
     <h2 class="movie-card__title">${movie.Title}</h2>
@@ -78,4 +78,8 @@ function renderMovies() {
   }
 
   moviesGrid.innerHTML = sorted.map((movie) => movieHTML(movie)).join("");
+}
+
+function showPlaceholder(img) {
+  img.outerHTML = `<div class="movie-card__poster-placeholder">Movie Poster<br />Not Available</div>`
 }
